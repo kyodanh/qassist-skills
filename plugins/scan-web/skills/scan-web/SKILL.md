@@ -2,7 +2,6 @@
 name: scan-web
 description: Scan a live web page with Playwright MCP and generate test cases into a reviewable test-plan spec (test case table + Gherkin + verified locators + page-object plan + test data), then after user approval apply it into the project's test layers (features / steps / pages / locators / data). Triggers on "scan web", "quét web", "scan-web", "generate test cases from URL", "tạo test case từ trang web", "apply test plan".
 ---
-
 # scan-web — Scan → Spec → Approve → Apply
 
 Two-phase, human-in-the-loop workflow. **Never generate test code directly from a scan** — always produce the spec MD first and wait for user approval.
@@ -80,13 +79,13 @@ End Phase 2 by telling the user: review/edit the spec, then run `/scan-web --app
 3. **Read one existing file of each layer first** (feature, steps, page, locator) and copy its style: import paths, fixture usage, naming, locator registry pattern.
 4. Generate, honoring the layer contract:
 
-| Layer | Path (adapt to project) | Contract |
-|---|---|---|
-| Feature | `tests/features/<N>.<Feature>/<feature>.feature` | Natural language only. No credentials/URLs/selectors. |
-| Steps | `tests/steps/<Feature>/<feature>.steps.ts` | Bridge Gherkin → Page Object. No UI logic, no selectors. |
-| Page Object | `tests/pages/<Feature>/<Feature>Page.ts` | All UI interaction. Selectors only via the locator layer. |
-| Locators | `tests/Locators/AppLocator.ts` (append) or project's registry | Single source of selectors, from spec §4. |
-| Data | `tests/data/<feature>/*.csv` | From spec §7. Fake data only. |
+| Layer       | Path (adapt to project)                                         | Contract                                                  |
+| ----------- | --------------------------------------------------------------- | --------------------------------------------------------- |
+| Feature     | `tests/features/<N>.<Feature>/<feature>.feature`              | Natural language only. No credentials/URLs/selectors.     |
+| Steps       | `tests/steps/<Feature>/<feature>.steps.ts`                    | Bridge Gherkin → Page Object. No UI logic, no selectors. |
+| Page Object | `tests/pages/<Feature>/<Feature>Page.ts`                      | All UI interaction. Selectors only via the locator layer. |
+| Locators    | `tests/Locators/AppLocator.ts` (append) or project's registry | Single source of selectors, from spec §4.                |
+| Data        | `tests/data/<feature>/*.csv`                                  | From spec §7. Fake data only.                            |
 
 5. Verify: run the project's generation step if any (`npm run bddgen`), then run the new tests (`npx playwright test --grep <tag>`). If a locator fails, re-verify it with `browser_generate_locator` and fix — update both the code and the spec so they stay in sync.
 6. Report: files created, test results, any spec items skipped and why.
