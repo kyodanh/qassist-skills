@@ -1,0 +1,9 @@
+{
+  "name": "scan-web",
+  "description": "Scan a web page with Playwright MCP and generate test cases into a reviewable test-plan spec, then apply into BDD/POM test layers after approval",
+  "version": "0.1.0",
+  "author": {
+    "name": "DanhNC",
+    "email": "kyodanh@gmail.com"
+  }
+}

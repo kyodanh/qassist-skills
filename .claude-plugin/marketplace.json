@@ -1,0 +1,18 @@
+{
+  "name": "qassist-skills",
+  "owner": {
+    "name": "DanhNC",
+    "email": "kyodanh@gmail.com"
+  },
+  "metadata": {
+    "description": "QA automation skills for Playwright projects — scan web, generate test plans, apply to BDD/POM layers",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "scan-web",
+      "source": "./plugins/scan-web",
+      "description": "Scan a web page with Playwright MCP, generate a reviewable test-plan spec (test cases + Gherkin + locators + page objects + test data), then apply it into the project's test layers after user approval"
+    }
+  ]
+}
